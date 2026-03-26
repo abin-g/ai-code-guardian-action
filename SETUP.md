@@ -13,7 +13,7 @@ Our interactive setup script will walk you through the configuration and automat
 1. Open your terminal and navigate to the root of your target project.
 2. Run the following command:
    ```bash
-   curl -sO https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/master/setup.sh
+   curl -sL https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/master/setup.sh -o setup.sh
    chmod +x setup.sh && ./setup.sh
    ```
 

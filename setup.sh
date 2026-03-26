@@ -110,6 +110,7 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - main
+      - master
       - release
 
 permissions:

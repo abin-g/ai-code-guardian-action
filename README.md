@@ -23,7 +23,7 @@ We've made setup as simple as possible. You can choose between our interactive s
 ### 1️⃣ Interactive Setup (Recommended)
 Run our smart installer directly in your terminal to scaffold everything you need in seconds.
 ```bash
-curl -sO https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/master/setup.sh
+curl -sL https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/master/setup.sh -o setup.sh
 chmod +x setup.sh && ./setup.sh
 ```
 
