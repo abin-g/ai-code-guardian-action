@@ -1,6 +1,8 @@
 # AI Code Guardian 🛡️
 
-**AI Code Guardian** is an intelligent DevSecOps platform built to secure your modern development workflow. It seamlessly integrates with GitHub to provide deep, context-aware analysis of your Pull Requests before they ever hit your main branch.
+**AI Code Guardian is a professional-grade DevSecOps platform that uses Multi-Agent AI to protect your codebase. It doesn't just find vulnerabilities — it understands your project's specific architecture and ensures every Pull Request meets industrial standards.
+
+[**View Technical Details & Architecture ➔**](./TECHNICAL_DETAILS.md)
 
 ---
 
@@ -11,6 +13,10 @@ In the era of AI-generated code, security vulnerabilities and architectural drif
 **AI Code Guardian solves this by:**
 - **Reducing Noise:** AI filters out false positives by understanding the surrounding code context.
 - **Actionable Insights:** It doesn't just say "Error found"—it explains *why* it's a risk and *how* to fix it.
+- **Multi-Agent AI**: Supports OpenAI, Anthropic, and Gemini with auto-failover.
+- **Security Guardrails**: Maps findings to OWASP & CWE standards.
+- **Architectural Enforcement**: Define your own "Project Laws" in plain English.
+- **Clean Code Insights**: Automatically detects code smells and complexity.
 - **Enforcing Standards:** Automatically catches violations of your project's specific naming conventions and architectural patterns.
 - **Gatekeeping:** Acts as a hard-fail gate in your CI/CD pipeline to prevent critical vulnerabilities from being merged.
 
