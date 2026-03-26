@@ -128,7 +128,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run AI Code Guardian
-        uses: abin-g/ai-code-guardian@v1
+        uses: abin-g/ai-code-guardian-action@v1
         with:
           github_token: \${{ secrets.GITHUB_TOKEN }}
           block_on_findings: ${ACTION_BLOCK}
