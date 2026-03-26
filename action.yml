@@ -21,10 +21,55 @@ inputs:
     default: "true"
 
 runs:
-  using: "docker"
-  # This pulls the compiled image from the private repository's GitHub Container Registry
-  image: "docker://ghcr.io/abin-g/ai-code-guardian-core:latest"
-  env:
-    GITHUB_TOKEN: ${{ inputs.github_token }}
-    INPUT_SCAN_PATH: ${{ inputs.scan_path }}
-    INPUT_BLOCK_ON_FINDINGS: ${{ inputs.block_on_findings }}
+  using: "composite"
+  steps:
+    - name: "🛡️ Step 1: Initialize Analysis"
+      shell: bash
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}:${{ github.workspace }} \
+          -e GITHUB_WORKSPACE=${{ github.workspace }} \
+          -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
+          -e INPUT_STEP="context" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          ghcr.io/abin-g/ai-code-guardian-core:latest
+
+    - name: "🔍 Step 2: Full-Repo Context Discovery"
+      shell: bash
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}:${{ github.workspace }} \
+          -e GITHUB_WORKSPACE=${{ github.workspace }} \
+          -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
+          -e INPUT_STEP="scan" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          ghcr.io/abin-g/ai-code-guardian-core:latest
+
+    - name: "🤖 Step 3: AI Practice & Standards Review"
+      shell: bash
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}:${{ github.workspace }} \
+          -e GITHUB_WORKSPACE=${{ github.workspace }} \
+          -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
+          -e INPUT_STEP="ai" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} \
+          -e ANTHROPIC_API_KEY=${{ env.ANTHROPIC_API_KEY }} \
+          -e GEMINI_API_KEY=${{ env.GEMINI_API_KEY }} \
+          ghcr.io/abin-g/ai-code-guardian-core:latest
+
+    - name: "📊 Step 4: PR Feedback & Reporting"
+      shell: bash
+      run: |
+        docker run --rm \
+          -v ${{ github.workspace }}:${{ github.workspace }} \
+          -e GITHUB_WORKSPACE=${{ github.workspace }} \
+          -e GITHUB_REPOSITORY=${{ github.repository }} \
+          -e GITHUB_EVENT_PATH=${{ github.event_path }} \
+          -e GITHUB_TOKEN=${{ inputs.github_token }} \
+          -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
+          -e INPUT_BLOCK_ON_FINDINGS=${{ inputs.block_on_findings }} \
+          -e INPUT_STEP="report" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          ghcr.io/abin-g/ai-code-guardian-core:latest
