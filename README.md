@@ -1,36 +1,60 @@
-# AI Code Guardian (Public Hub)
+# AI Code Guardian 🛡️
 
-Welcome to the public setup repository for AI Code Guardian!
+**AI Code Guardian** is an intelligent DevSecOps platform built to secure your modern development workflow. It seamlessly integrates with GitHub to provide deep, context-aware analysis of your Pull Requests before they ever hit your main branch.
 
-## How to Install (Interactive)
+---
 
-The easiest way to integrate AI Code Guardian into your GitHub projects is to use our interactive setup wizard. 
+## 🚀 Why AI Code Guardian?
 
-1. Download the setup script:
-   ```bash
-   curl -sO https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/main/setup.sh
-   chmod +x setup.sh
-   ```
-2. Run it locally and follow the prompts:
-   ```bash
-   ./setup.sh
-   ```
+In the era of AI-generated code, security vulnerabilities and architectural drift are harder to spot than ever. Standard static analysis tools (SAST) often produce too many low-value alerts, leading to "alert fatigue."
 
-*The wizard will automatically generate the required GitHub Action `.github/workflows/ai-code-guardian.yml` and the standard configuration `.ai-guardian.yml` right inside your target repository.*
+**AI Code Guardian solves this by:**
+- **Reducing Noise:** AI filters out false positives by understanding the surrounding code context.
+- **Actionable Insights:** It doesn't just say "Error found"—it explains *why* it's a risk and *how* to fix it.
+- **Enforcing Standards:** Automatically catches violations of your project's specific naming conventions and architectural patterns.
+- **Gatekeeping:** Acts as a hard-fail gate in your CI/CD pipeline to prevent critical vulnerabilities from being merged.
 
-## Manual Installation
+---
 
-If you prefer to set it up manually without the setup wizard, add this block to your `.github/workflows/main.yml`:
+## 🛠️ Getting Started
 
-```yaml
-jobs:
-  code-guardian-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run AI Code Guardian
-        uses: abin-g/ai-code-guardian-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # block_on_findings: "true"
+We've made setup as simple as possible. You can choose between our interactive setup wizard or manual configuration.
+
+### 1️⃣ Interactive Setup (Recommended)
+Run our smart installer directly in your terminal to scaffold everything you need in seconds.
+```bash
+curl -sO https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/master/setup.sh
+chmod +x setup.sh && ./setup.sh
 ```
+
+### 2️⃣ Manual Integration
+If you prefer total control, you can manually add the GitHub Action and configuration file.
+> See the [Manual Setup Guide](./SETUP.md#manual-installation).
+
+---
+
+## 📖 Explore the Documentation
+
+| Document | Description |
+|----------|-------------|
+| [**Setup Guide**](./SETUP.md) | How to install and configure AI Code Guardian in your project. |
+| [**Error & Analysis Reference**](./ERROR_CODES.md) | Detailed breakdown of findings, severity levels, and troubleshooting. |
+| [**Roadmap & Lifecycle**](./ROADMAP.md) | Where the project is headed and upcoming AI features. |
+
+---
+
+## 🛡️ Governance & Policy
+
+AI Code Guardian uses a policy-driven approach. You can define what severities block a merge in your `.ai-guardian.yml` file. By default, it blocks any Pull Request containing **CRITICAL (ERROR)** level security findings.
+
+---
+
+## 🤝 Contributing & Support
+
+We welcome contributions! If you encounter issues or have questions about specific scan results, check our [Error Reference](./ERROR_CODES.md) or open an issue in this repository.
+
+---
+
+## ⚖️ License
+
+This project is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**. See the [LICENSE](./LICENSE) file for details.
