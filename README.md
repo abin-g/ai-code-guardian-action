@@ -51,7 +51,7 @@ AI Code Guardian uses a policy-driven approach. You can define what severities b
 
 ## 🤝 Contributing & Support
 
-We welcome contributions! If you encounter issues or have questions about specific scan results, check our [Error Reference](./ERROR_CODES.md) or open an issue in this repository.
+We welcome contributions! If you encounter issues or have questions about specific scan results, check our [Error Reference](./ERROR_CODES.md) or open an issue in [this repository](https://github.com/abin-g/ai-code-guardian-action/issues).
 
 ---
 

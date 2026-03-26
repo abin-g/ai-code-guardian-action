@@ -38,4 +38,4 @@ AI Code Guardian is currently in its **MVP (Minimum Viable Product)** phase. Our
 ---
 
 > [!TIP]
-> Have a feature request? Open an issue in our [Core Repository](../ai-code-guardian-core)!
+> Have a feature request? Open an issue in [this repository](https://github.com/abin-g/ai-code-guardian-action/issues)!
