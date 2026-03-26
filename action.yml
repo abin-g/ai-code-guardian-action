@@ -32,6 +32,7 @@ runs:
           -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
           -e INPUT_STEP="context" \
           -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e TELEMETRY_KEY=${{ env.TELEMETRY_KEY }} \
           ghcr.io/abin-g/ai-code-guardian-core:latest
 
     - name: "🔍 Step 2: Full-Repo Context Discovery"
@@ -43,6 +44,7 @@ runs:
           -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
           -e INPUT_STEP="scan" \
           -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e TELEMETRY_KEY=${{ env.TELEMETRY_KEY }} \
           ghcr.io/abin-g/ai-code-guardian-core:latest
 
     - name: "🤖 Step 3: AI Practice & Standards Review"
@@ -57,6 +59,7 @@ runs:
           -e OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} \
           -e ANTHROPIC_API_KEY=${{ env.ANTHROPIC_API_KEY }} \
           -e GEMINI_API_KEY=${{ env.GEMINI_API_KEY }} \
+          -e TELEMETRY_KEY=${{ env.TELEMETRY_KEY }} \
           ghcr.io/abin-g/ai-code-guardian-core:latest
 
     - name: "📊 Step 4: PR Feedback & Reporting"
@@ -72,4 +75,5 @@ runs:
           -e INPUT_BLOCK_ON_FINDINGS=${{ inputs.block_on_findings }} \
           -e INPUT_STEP="report" \
           -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e TELEMETRY_KEY=${{ env.TELEMETRY_KEY }} \
           ghcr.io/abin-g/ai-code-guardian-core:latest
