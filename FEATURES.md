@@ -4,19 +4,24 @@ AI Code Guardian is more than just a static scanner. It combines the speed of lo
 
 ---
 
-## 🌟 Core Features
+## 🚀 Principal Features
 
-### 1. Multi-Agent AI Analysis (New!)
-The engine now supports three of the most advanced AI models in the world. When enabled, the tool extracts the actual code context and sends it to your choice of AI for a expert-level security review.
+### 1. Multi-Agent AI (Orchestrator)
+Currently supports **OpenAI (GPT-4o)**, **Anthropic (Claude 3.5 Sonnet)**, and **Google Gemini (1.5 Pro)**. The orchestrator automatically handles priority and failover, ensuring your PRs are never blocked by a single provider's downtime.
 
-- **Anthropic Claude 3.5 Sonnet**: Our recommended model for high-precision security fixes.
-- **OpenAI GPT-4o**: Excellent for general-purpose security and context-aware explanations.
-- **Google Gemini 1.5 Pro**: Great for analysis of large codebases and complex patterns.
+### 2. Repo-Wide Context Awareness (Requirement 45) 🧠
+Unlike basic scanners, AI Code Guardian understands your entire project. It detects your tech stack (e.g., FastAPI, Django, React) and key dependencies to provide fixes that respect your existing libraries and coding style.
 
-### 2. Intelligent Auto-Failover
+### 3. Project-Specific Practices Enforcer (Requirement 2C) 📐
+Define your own "Project Laws." Want to forbid direct DB calls from Controllers? Or enforce a specific naming convention? Just add it to your guidelines, and the AI will enforce it during every PR.
+
+### 4. Smart Code Quality & Maintenance (Requirement 2B) ✨
+Automatically detects "Code Smells," high cyclomatic complexity, and maintainability risks, grouping them separately from security vulnerabilities for a cleaner developer experience.
+
+### 5. Intelligent Auto-Failover
 If you configure multiple AI providers, the system will automatically handle failovers. If one service is down or you hit a rate limit, AI Code Guardian will instantly try the next available agent.
 
-### 3. Local-First Security Scanning
+### 6. Local-First Security Scanning
 We use **Semgrep** to perform initial scans directly on your CI/CD runner. This means your raw source code is never uploaded to our servers—only the specific flagged snippets are sent to your chosen AI provider for analysis.
 
 ---

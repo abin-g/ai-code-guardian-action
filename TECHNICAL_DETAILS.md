@@ -14,11 +14,16 @@ We leverage **Semgrep**, the industry standard for lightweight static analysis.
     - `p/secrets`: Detection of hardcoded keys and tokens.
     - `p/ci` & `p/default`: Industry-standard code quality and maintainability rules.
 
-### 2. The AI Intelligence Layer (Multi-Agent)
+### 2. The Context Discovery Layer (Requirement 45)
+Before any analysis, the platform builds a "Project Identity":
+- **Tech Stack Detection**: Automatically identifies if the project is Python, Node.js, etc.
+- **Dependency Mapping**: Reads `requirements.txt` or `package.json` to understand which frameworks (Django, React, FastAPI) are being used.
+- **Tree Analysis**: Generates a recursive map of the codebase to understand architectural hierarchies.
+
+### 3. The AI Intelligence Layer (Multi-Agent)
 Finding a bug is only half the battle. Explaining it and fixing it is the other half.
-*   **Context Extraction**: Our engine extracts the specific code lines and surrounding context from the scanner output.
+*   **Context Injection**: The AI Agent receives the "Project Identity." This allows it to say things like "Since you're using Django, you should use `make_password` instead of manual hashing."
 *   **Orchestration**: We use a priority-based failover system. If OpenAI is throttled, the agent automatically switches to Anthropic or Gemini.
-*   **Data Privacy**: Only the specifically flagged code snippets are sent for analysis, minimizing exposure.
 
 ### 3. The Practices Enforcer (Our Core USP) 📐
 Unlike Snyk or SonarQube, AI Code Guardian understands **your project's specific laws**.
