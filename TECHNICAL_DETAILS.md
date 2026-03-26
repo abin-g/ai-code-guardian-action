@@ -16,6 +16,9 @@ We leverage **Semgrep**, the industry standard for lightweight static analysis.
 
 ### 2. The Context Discovery Layer (Requirement 45)
 Before any analysis, the platform builds a "Project Identity":
+- **Architectural Enforcement**: Define both plain-English guidelines (AI) and strict "Hard Laws" (Deterministic).
+- **Hard Laws (Requirement 6)**: Block forbidden imports, enforce naming patterns, and verify repo structure.
+- **Clean Code Insights**: Automatically detects code smells and complexity.
 - **Tech Stack Detection**: Automatically identifies if the project is Python, Node.js, etc.
 - **Dependency Mapping**: Reads `requirements.txt` or `package.json` to understand which frameworks (Django, React, FastAPI) are being used.
 - **Tree Analysis**: Generates a recursive map of the codebase to understand architectural hierarchies.
@@ -25,11 +28,12 @@ Finding a bug is only half the battle. Explaining it and fixing it is the other 
 *   **Context Injection**: The AI Agent receives the "Project Identity." This allows it to say things like "Since you're using Django, you should use `make_password` instead of manual hashing."
 *   **Orchestration**: We use a priority-based failover system. If OpenAI is throttled, the agent automatically switches to Anthropic or Gemini.
 
-### 3. The Practices Enforcer (Our Core USP) 📐
-Unlike Snyk or SonarQube, AI Code Guardian understands **your project's specific laws**.
-*   **Structure Analyzer**: We generate a manifest of your repository's file tree and module dependencies.
-*   **Architectural Guardrails**: The AI evaluates code against your custom guidelines (e.g., "Services must not call Repositories diretamente").
-*   **Contextual Reasoning**: It uses the file path and repo structure to determine if a pattern is a violation (e.g., an unsafe import in a Production file vs. a Test file).
+### 4. The Deterministic Standards Layer (Requirement 6) ⚖️
+For rules that are non-negotiable, we use a regex-based enforcer that doesn't rely on AI:
+- **Import Guard**: Prevents architectural violations (e.g., "Web -> Data" leaks).
+- **Naming Guard**: Ensures consistent naming conventions across the team.
+- **Structural Guard**: Verifies that required project files exist.
+- **Performance**: These checks represent zero AI token cost and execute in milliseconds.
 
 ---
 
