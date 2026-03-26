@@ -1,0 +1,30 @@
+name: "AI Code Guardian"
+description: "AI-powered code security scanner that detects vulnerabilities and posts actionable feedback on your PRs"
+author: "abin-g"
+
+branding:
+  icon: "shield"
+  color: "blue"
+
+inputs:
+  github_token:
+    description: "GitHub token for posting PR comments"
+    required: true
+    default: ${{ github.token }}
+  scan_path:
+    description: "Path to scan (relative to workspace)"
+    required: false
+    default: "."
+  block_on_findings:
+    description: "Fail the action if critical security issues are found"
+    required: false
+    default: "true"
+
+runs:
+  using: "docker"
+  # This pulls the compiled image from the private repository's GitHub Container Registry
+  image: "docker://ghcr.io/abin-g/ai-code-guardian:latest"
+  env:
+    GITHUB_TOKEN: ${{ inputs.github_token }}
+    INPUT_SCAN_PATH: ${{ inputs.scan_path }}
+    INPUT_BLOCK_ON_FINDINGS: ${{ inputs.block_on_findings }}
