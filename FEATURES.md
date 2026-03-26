@@ -9,13 +9,13 @@ AI Code Guardian is more than just a static scanner. It combines the speed of lo
 ### 1. Multi-Agent AI (Orchestrator)
 Currently supports **OpenAI (GPT-4o)**, **Anthropic (Claude 3.5 Sonnet)**, and **Google Gemini (1.5 Pro)**. The orchestrator automatically handles priority and failover, ensuring your PRs are never blocked by a single provider's downtime.
 
-### 2. Repo-Wide Context Awareness (Requirement 45) 🧠
+### 2. Repo-Wide Context Awareness 🧠
 Unlike basic scanners, AI Code Guardian understands your entire project. It detects your tech stack (e.g., FastAPI, Django, React) and key dependencies to provide fixes that respect your existing libraries and coding style.
 
-### 3. Project-Specific Practices Enforcer (Requirement 2C) 📐
+### 3. Project-Specific Practices Enforcer 📐
 Define your own "Project Laws." Want to forbid direct DB calls from Controllers? Or enforce a specific naming convention? Just add it to your guidelines, and the AI will enforce it during every PR.
 
-### 4. Smart Code Quality & Maintenance (Requirement 2B) ✨
+### 4. Smart Code Quality & Maintenance ✨
 Automatically detects "Code Smells," high cyclomatic complexity, and maintainability risks, grouping them separately from security vulnerabilities for a cleaner developer experience.
 
 ### 5. Intelligent Auto-Failover
