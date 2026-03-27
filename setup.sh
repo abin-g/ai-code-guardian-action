@@ -43,22 +43,28 @@ echo -e "${BLUE}--- Configuration Options ---${NC}"
 read -p "🔐 Enable Security Vulnerability Scanning? (Y/n): " ENABLE_SECURITY
 ENABLE_SECURITY=${ENABLE_SECURITY:-Y}
 
-read -p "✋ Block PR merges if CRITICAL security issues are found? (Y/n): " BLOCK_CRITICAL
-BLOCK_CRITICAL=${BLOCK_CRITICAL:-Y}
+read -p "✋ Block PR merges on strict security policy (ERROR + WARNING)? (Y/n): " BLOCK_STRICT
+BLOCK_STRICT=${BLOCK_STRICT:-Y}
 
-read -p "📊 Enable Code Quality & Smell Analysis (Beta)? (y/N): " ENABLE_QUALITY
-ENABLE_QUALITY=${ENABLE_QUALITY:-N}
+read -p "📊 Enable Code Quality & Smell Analysis (Beta)? (Y/n): " ENABLE_QUALITY
+ENABLE_QUALITY=${ENABLE_QUALITY:-Y}
 
-read -p "🏗️ Enable Code Practices & Architecture Enforcement? (y/N): " ENABLE_PRACTICES
-ENABLE_PRACTICES=${ENABLE_PRACTICES:-N}
+read -p "🏗️ Enable Code Practices & Architecture Enforcement? (Y/n): " ENABLE_PRACTICES
+ENABLE_PRACTICES=${ENABLE_PRACTICES:-Y}
+
+# 2.5 Ask for the main production branch (base branch for PR events)
+read -p "🌿 Enter your main production branch name (base branch for PRs, e.g., 'main'): " PROD_BRANCH
+PROD_BRANCH=${PROD_BRANCH:-main}
 
 # 3. Process answers
-if [[ "$BLOCK_CRITICAL" =~ ^[Yy]$ ]]; then
-    BLOCK_ON_SEVERITY="    - ERROR"
+if [[ "$BLOCK_STRICT" =~ ^[Yy]$ ]]; then
+    # Strict mode: block merge for both ERROR and WARNING security findings.
+    BLOCK_ON_SEVERITY="    - ERROR\n    - WARNING"
     ACTION_BLOCK="\"true\""
 else
-    BLOCK_ON_SEVERITY="    # - ERROR"
-    ACTION_BLOCK="\"false\""
+    # Conservative mode: only block merge on ERROR.
+    BLOCK_ON_SEVERITY="    - ERROR\n    # - WARNING"
+    ACTION_BLOCK="\"true\""
 fi
 
 if [[ "$ENABLE_SECURITY" =~ ^[Yy]$ ]]; then CFG_SEC="true"; else CFG_SEC="false"; fi
@@ -86,6 +92,11 @@ quality:
 
 practices:
   enabled: ${CFG_PRAC}
+  guidelines:
+    - "Avoid direct use of eval or Function constructor."
+    - "Do not keep business logic directly inside route page files."
+    - "Use strong password hashing (bcrypt/argon2), never md5/sha1 for passwords."
+    - "Keep components small and move reusable logic into shared modules."
 
 exclude:
   - "tests/"
@@ -109,9 +120,7 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
     branches:
-      - main
-      - master
-      - release
+      - ${PROD_BRANCH}
 
 permissions:
   contents: read
@@ -147,3 +156,14 @@ echo "3. git commit -m 'chore: integrate AI Code Guardian'"
 echo "4. git push"
 echo ""
 echo "Your PRs will now be automatically scanned. Happy secure coding! 🚀"
+
+# Remove this setup wizard file from the local machine after successful completion.
+# We only delete when the script file itself is named `setup.sh` to avoid surprises.
+SCRIPT_TO_DELETE_SRC="${BASH_SOURCE[0]}"
+# Resolve to an absolute path so cleanup works reliably even if the script was invoked from another directory.
+SCRIPT_DIR="$(cd "$(dirname "$SCRIPT_TO_DELETE_SRC")" && pwd)"
+SCRIPT_TO_DELETE="${SCRIPT_DIR}/$(basename "$SCRIPT_TO_DELETE_SRC")"
+if [[ -f "$SCRIPT_TO_DELETE" && "$(basename "$SCRIPT_TO_DELETE")" == "setup.sh" ]]; then
+  echo -e "${YELLOW}Cleaning up: removing $SCRIPT_TO_DELETE${NC}"
+  rm -f "$SCRIPT_TO_DELETE" || true
+fi
