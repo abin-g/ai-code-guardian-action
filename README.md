@@ -44,6 +44,7 @@ If you prefer total control, you can manually add the GitHub Action and configur
 | Document | Description |
 |----------|-------------|
 | [**Setup Guide**](./SETUP.md) | How to install and configure AI Code Guardian in your project. |
+| [**Rule Engine Guide**](./RULE_ENGINE.md) | In-depth `.ai-guardian.yml` reference, schema, policies, and troubleshooting. |
 | [**Feature & AI Guide**](./FEATURES.md) | Exploration of AI agents and how to test/enable them. |
 | [**Error & Analysis Reference**](./ERROR_CODES.md) | Detailed breakdown of findings, severity levels, and troubleshooting. |
 | [**Roadmap & Lifecycle**](./ROADMAP.md) | Where the project is headed and upcoming AI features. |
