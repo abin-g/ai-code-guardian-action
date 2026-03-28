@@ -70,6 +70,7 @@ runs:
           -e GITHUB_WORKSPACE=${{ github.workspace }} \
           -e GITHUB_REPOSITORY=${{ github.repository }} \
           -e GITHUB_EVENT_PATH=${{ github.event_path }} \
+          -e GITHUB_PR_NUMBER=${{ github.event.pull_request.number }} \
           -e GITHUB_TOKEN=${{ inputs.github_token }} \
           -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
           -e INPUT_BLOCK_ON_FINDINGS=${{ inputs.block_on_findings }} \
