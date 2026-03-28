@@ -1,12 +1,12 @@
-# AI Code Guardian Setup Guide 🛠️
+# Sentinel CI Setup Guide 🛠️
 
-This guide covers how to integrate AI Code Guardian into your GitHub repository using the interactive setup wizard or manual configuration.
+This guide covers how to integrate **Sentinel CI** (AI Code Guardian engine) into your GitHub repository using the interactive setup wizard or manual configuration.
 
 ---
 
 ## 🏗️ Method 1: Interactive Setup Wizard (Fastest)
 
-Our interactive setup script will walk you through the configuration and automatically generate the necessary files in your project.
+Our interactive setup script walks you through configuration and generates the necessary files in your project.
 
 ### Usage
 
@@ -18,9 +18,11 @@ Our interactive setup script will walk you through the configuration and automat
    ```
 
 ### What the Wizard Does:
-- **Scaffolds Config:** Creates a `.ai-guardian.yml` file based on your feature preferences.
-- **Sets up Workflow:** Creates `.github/workflows/ai-code-guardian.yml` with the correct permissions and triggers.
-- **Configures Governance:** Allows you to decide if critical security issues should block PR merges.
+- **Scaffolds Config:** Creates a `.sentinel-ci.yml` file based on your feature preferences.
+- **Sets up Workflow:** Creates `.github/workflows/sentinel-ci.yml` with the correct permissions and triggers.
+- **Configures Governance:** Lets you choose strict vs conservative merge blocking.
+
+> **Legacy:** Older installs may use `ai-code-guardian.yml` as the workflow filename; both work the same way.
 
 ---
 
@@ -29,10 +31,10 @@ Our interactive setup script will walk you through the configuration and automat
 If you prefer to configure the action manually, follow these steps:
 
 ### 1. Create the Workflow File
-Create a file at `.github/workflows/ai-code-guardian.yml` with the following content:
+Create a file at `.github/workflows/sentinel-ci.yml` with the following content:
 
 ```yaml
-name: AI Code Guardian
+name: Sentinel CI
 
 on:
   pull_request:
@@ -44,14 +46,14 @@ permissions:
   pull-requests: write
 
 jobs:
-  code-guardian:
+  sentinel-ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Run AI Code Guardian
+      - name: Run Sentinel CI
         uses: abin-g/ai-code-guardian-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -60,7 +62,7 @@ jobs:
 ```
 
 ### 2. Add the Configuration File
-Create a `.ai-guardian.yml` file in your repository root to control the scanner's behavior:
+Create a `.sentinel-ci.yml` file in your repository root to control the scanner's behavior (legacy `.ai-guardian.yml` is still supported if the new file is absent):
 
 ```yaml
 security:
@@ -79,7 +81,7 @@ exclude:
 
 ## 🔑 Authentication
 
-AI Code Guardian requires a `GITHUB_TOKEN` to post comments on your Pull Requests. 
+Sentinel CI requires a `GITHUB_TOKEN` to post comments on your Pull Requests.
 
 - **GitHub Actions:** The `${{ secrets.GITHUB_TOKEN }}` is automatically provided by GitHub for every workflow run. No manual secret setup is required as long as you have `pull-requests: write` permissions defined in your workflow.
 
@@ -88,6 +90,6 @@ AI Code Guardian requires a `GITHUB_TOKEN` to post comments on your Pull Request
 ## 🚀 Post-Installation
 
 Once the files are added:
-1. Commit the changes: `git add . && git commit -m "chore: add AI Code Guardian"`
+1. Commit the changes: `git add . && git commit -m "chore: add Sentinel CI"`
 2. Push to your repository: `git push`
-3. Open a test Pull Request to see the bot in action!
+3. Open a test Pull Request to see the scan in action!

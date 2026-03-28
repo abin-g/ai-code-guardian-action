@@ -1,6 +1,6 @@
-# AI Code Guardian Roadmap 🗺️
+# Sentinel CI Roadmap 🗺️
 
-AI Code Guardian has completed its initial MVP and is now in **Beta (V1.0)**. We are transitioning from a simple GitHub Action into a full **SaaS-based security and architecture platform**.
+**Sentinel CI** (AI Code Guardian engine) has completed its initial MVP and is now in **Beta (V1.0)**. We are transitioning from a simple GitHub Action into a full **SaaS-based security and architecture platform**.
 
 ---
 

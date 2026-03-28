@@ -1,6 +1,6 @@
-# AI Code Guardian: Features & AI Capabilities 🚀
+# Sentinel CI: Features & AI Capabilities 🚀
 
-AI Code Guardian is more than just a static scanner. It combines the speed of local security tools with the intelligence of modern Large Language Models (LLMs).
+**Sentinel CI** (AI Code Guardian engine) is more than a static scanner. It combines local security tooling with modern Large Language Models (LLMs).
 
 ---
 
@@ -10,19 +10,19 @@ AI Code Guardian is more than just a static scanner. It combines the speed of lo
 Currently supports **OpenAI (GPT-4o)**, **Anthropic (Claude 3.5 Sonnet)**, and **Google Gemini (1.5 Pro)**. The orchestrator automatically handles priority and failover, ensuring your PRs are never blocked by a single provider's downtime.
 
 ### 2. Repo-Wide Context Awareness 🧠
-Unlike basic scanners, AI Code Guardian understands your entire project. It detects your tech stack (e.g., FastAPI, Django, React) and key dependencies to provide fixes that respect your existing libraries and coding style.
+Unlike basic scanners, Sentinel CI understands your entire project. It detects your tech stack (e.g., FastAPI, Django, React) and key dependencies to provide fixes that respect your existing libraries and coding style.
 
 ### 3. Project-Specific Practices Enforcer 📐
-Define your own "Project Laws." Want to forbid direct DB calls from Controllers? Or enforce a specific naming convention? Just add it to your guidelines, and the AI will enforce it during every PR.
+Define your own "Project Laws." Want to forbid direct DB calls from Controllers? Or enforce a specific naming convention? Add it to your guidelines, and the AI will enforce it during every PR.
 
 ### 4. Smart Code Quality & Maintenance ✨
 Automatically detects "Code Smells," high cyclomatic complexity, and maintainability risks, grouping them separately from security vulnerabilities for a cleaner developer experience.
 
 ### 5. Intelligent Auto-Failover
-If you configure multiple AI providers, the system will automatically handle failovers. If one service is down or you hit a rate limit, AI Code Guardian will instantly try the next available agent.
+If you configure multiple AI providers, the system will automatically handle failovers. If one service is down or you hit a rate limit, Sentinel CI will instantly try the next available agent.
 
 ### 6. Local-First Security Scanning
-We use **Semgrep** to perform initial scans directly on your CI/CD runner. This means your raw source code is never uploaded to our servers—only the specific flagged snippets are sent to your chosen AI provider for analysis.
+We use **Semgrep** to perform initial scans directly on your CI/CD runner. Your raw source code is not uploaded to our servers—only the specific flagged snippets are sent to your chosen AI provider for analysis.
 
 ---
 
@@ -46,10 +46,10 @@ You can use any of the following providers:
    *(Note: You only need one, but you can add multiple for failover support).*
 
 ### Step 3: Update your Workflow
-Update your `.github/workflows/ai-code-guardian.yml` to pass the secret:
+Update your `.github/workflows/sentinel-ci.yml` (or legacy `ai-code-guardian.yml`) to pass the secret:
 
 ```yaml
-      - name: Run AI Code Guardian
+      - name: Run Sentinel CI
         uses: abin-g/ai-code-guardian-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

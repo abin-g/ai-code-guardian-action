@@ -1,6 +1,6 @@
 # Technical Details & Architecture
 
-AI Code Guardian is not just another wrapper around an LLM. It is a sophisticated, hybrid-analysis engine designed to provide industrial-grade security and architectural governance.
+**Sentinel CI** (AI Code Guardian engine) is not just another wrapper around an LLM. It is a hybrid-analysis engine designed to provide industrial-grade security and architectural governance.
 
 ## 🏗️ How It Works (The Core Engine)
 
@@ -39,7 +39,7 @@ For rules that are non-negotiable, we use a regex-based enforcer that doesn't re
 
 ## 🆚 Comparison with Other Platforms
 
-| Feature | Snyk / SonarQube | AI Code Guardian |
+| Feature | Snyk / SonarQube | Sentinel CI |
 | :--- | :--- | :--- |
 | **Security Coverage** | Excellent (Static) | Excellent (Static + AI Explanations) |
 | **Custom Architecture** | Hard to define (Regex only) | **Natural Language Guidelines** |

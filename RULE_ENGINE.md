@@ -1,12 +1,14 @@
-# AI Code Guardian Rule Engine Guide
+# Sentinel CI Rule Engine Guide
 
-This document explains how to configure `.ai-guardian.yml` for security gates, quality scanning, deterministic standards, and AI practice review.
+This document explains how to configure `.sentinel-ci.yml` (AI Code Guardian engine) for security gates, quality scanning, deterministic standards, and AI practice review.
+
+**Legacy:** If you still have `.ai-guardian.yml` at the repo root and no `.sentinel-ci.yml`, the scanner loads the legacy file and prints a hint to rename it.
 
 ---
 
-## What `.ai-guardian.yml` Controls
+## What `.sentinel-ci.yml` Controls
 
-AI Code Guardian supports four policy layers:
+Sentinel CI supports four policy layers:
 
 1. `security`  
    Controls merge-blocking behavior by severity (`ERROR`, `WARNING`, `INFO`).
@@ -212,7 +214,7 @@ Check:
 ### Config appears ignored
 
 Check:
-1. File path is exactly `.ai-guardian.yml` at repository root.
+1. Policy file is `.sentinel-ci.yml` at repository root (or legacy `.ai-guardian.yml` only if the new file is absent).
 2. YAML indentation is valid.
 3. Exclude paths are correct for your project layout.
 

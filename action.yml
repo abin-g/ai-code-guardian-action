@@ -1,5 +1,5 @@
-name: "AI Code Guardian"
-description: "AI-powered code security scanner that detects vulnerabilities and posts actionable feedback on your PRs"
+name: "Sentinel CI"
+description: "Sentinel CI — AI-powered PR security and governance (AI Code Guardian engine). Detects vulnerabilities and posts actionable feedback."
 author: "abin-g"
 
 branding:
@@ -31,7 +31,7 @@ runs:
           -e GITHUB_WORKSPACE=${{ github.workspace }} \
           -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
           -e INPUT_STEP="context" \
-          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.sentinel_ci_state.json" \
           -e TELEMETRY_KEY=${{ env.TELEMETRY_KEY }} \
           ghcr.io/abin-g/ai-code-guardian-core:latest
 
@@ -43,7 +43,7 @@ runs:
           -e GITHUB_WORKSPACE=${{ github.workspace }} \
           -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
           -e INPUT_STEP="scan" \
-          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.sentinel_ci_state.json" \
           -e TELEMETRY_KEY=${{ env.TELEMETRY_KEY }} \
           ghcr.io/abin-g/ai-code-guardian-core:latest
 
@@ -55,7 +55,7 @@ runs:
           -e GITHUB_WORKSPACE=${{ github.workspace }} \
           -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
           -e INPUT_STEP="ai" \
-          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.sentinel_ci_state.json" \
           -e OPENAI_API_KEY=${{ env.OPENAI_API_KEY }} \
           -e ANTHROPIC_API_KEY=${{ env.ANTHROPIC_API_KEY }} \
           -e GEMINI_API_KEY=${{ env.GEMINI_API_KEY }} \
@@ -74,6 +74,6 @@ runs:
           -e INPUT_SCAN_PATH=${{ inputs.scan_path }} \
           -e INPUT_BLOCK_ON_FINDINGS=${{ inputs.block_on_findings }} \
           -e INPUT_STEP="report" \
-          -e INPUT_STATE_FILE="${{ github.workspace }}/.ai_guardian_state.json" \
+          -e INPUT_STATE_FILE="${{ github.workspace }}/.sentinel_ci_state.json" \
           -e TELEMETRY_KEY=${{ env.TELEMETRY_KEY }} \
           ghcr.io/abin-g/ai-code-guardian-core:latest
