@@ -138,7 +138,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run Sentinel CI
-        uses: abin-g/ai-code-guardian-action@v1
+        uses: abin-g/sentinel-ci-action@v1
         with:
           github_token: \${{ secrets.GITHUB_TOKEN }}
           block_on_findings: ${ACTION_BLOCK}

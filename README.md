@@ -30,7 +30,7 @@ You can use the interactive setup wizard or manual configuration.
 Run the installer in your terminal to scaffold everything you need in seconds.
 
 ```bash
-curl -sL https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/master/setup.sh -o setup.sh
+curl -sL https://raw.githubusercontent.com/abin-g/sentinel-ci-action/master/setup.sh -o setup.sh
 chmod +x setup.sh && ./setup.sh
 ```
 
@@ -57,13 +57,13 @@ If you prefer total control, add the GitHub Action and configuration file yourse
 
 Sentinel CI uses a policy-driven approach. Define what severities block a merge in your `.sentinel-ci.yml` file. By default, many setups block Pull Requests containing **ERROR** level security findings (you can add **WARNING** for strict mode). Legacy `.ai-guardian.yml` is still read if `.sentinel-ci.yml` is missing.
 
-> **Note:** The GitHub Action package may still be published as `abin-g/ai-code-guardian-action` for backward compatibility.
+> **Note:** The GitHub Action package may still be published as `abin-g/sentinel-ci-action` for backward compatibility.
 
 ---
 
 ## 🤝 Contributing & Support
 
-We welcome contributions! If you encounter issues or have questions about scan results, check our [Error Reference](./ERROR_CODES.md) or open an issue in [this repository](https://github.com/abin-g/ai-code-guardian-action/issues).
+We welcome contributions! If you encounter issues or have questions about scan results, check our [Error Reference](./ERROR_CODES.md) or open an issue in [this repository](https://github.com/abin-g/sentinel-ci-action/issues).
 
 ---
 

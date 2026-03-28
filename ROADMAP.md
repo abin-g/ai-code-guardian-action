@@ -47,4 +47,4 @@ We are moving beyond individual repositories to a centralized management interfa
 ---
 
 > [!TIP]
-> Have a feature request or want to join the SaaS early access? Open an issue in [this repository](https://github.com/abin-g/ai-code-guardian-action/issues)!
+> Have a feature request or want to join the SaaS early access? Open an issue in [this repository](https://github.com/abin-g/sentinel-ci-action/issues)!

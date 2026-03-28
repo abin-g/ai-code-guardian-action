@@ -13,7 +13,7 @@ Our interactive setup script walks you through configuration and generates the n
 1. Open your terminal and navigate to the root of your target project.
 2. Run the following command:
    ```bash
-   curl -sL https://raw.githubusercontent.com/abin-g/ai-code-guardian-action/master/setup.sh -o setup.sh
+   curl -sL https://raw.githubusercontent.com/abin-g/sentinel-ci-action/master/setup.sh -o setup.sh
    chmod +x setup.sh && ./setup.sh
    ```
 
@@ -22,7 +22,7 @@ Our interactive setup script walks you through configuration and generates the n
 - **Sets up Workflow:** Creates `.github/workflows/sentinel-ci.yml` with the correct permissions and triggers.
 - **Configures Governance:** Lets you choose strict vs conservative merge blocking.
 
-> **Legacy:** Older installs may use `ai-code-guardian.yml` as the workflow filename; both work the same way.
+> **Legacy:** Older installs may use `sentinel-ci.yml` as the workflow filename; both work the same way.
 
 ---
 
@@ -54,7 +54,7 @@ jobs:
           fetch-depth: 0
 
       - name: Run Sentinel CI
-        uses: abin-g/ai-code-guardian-action@v1
+        uses: abin-g/sentinel-ci-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Optional: scan_path: "."

@@ -46,11 +46,11 @@ You can use any of the following providers:
    *(Note: You only need one, but you can add multiple for failover support).*
 
 ### Step 3: Update your Workflow
-Update your `.github/workflows/sentinel-ci.yml` (or legacy `ai-code-guardian.yml`) to pass the secret:
+Update your `.github/workflows/sentinel-ci.yml` (or legacy `sentinel-ci.yml`) to pass the secret:
 
 ```yaml
       - name: Run Sentinel CI
-        uses: abin-g/ai-code-guardian-action@v1
+        uses: abin-g/sentinel-ci-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         env:
